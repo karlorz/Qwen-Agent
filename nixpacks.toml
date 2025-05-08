@@ -23,4 +23,4 @@ cmds = [
 
 # Start command - use uv to run the application
 [start]
-cmd = "uv run run_server.py -m $LLM_BASE_URL -k $LLM_API_KEY -l $LLM_MODEL"
+cmd = "uv run run_server.py -m $LLM_BASE_URL -k $LLM_API_KEY -l $LLM_MODEL -s 0.0.0.0"
