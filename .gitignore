@@ -43,3 +43,5 @@ test/*
 tests/env.sh
 examples/data/*
 test.db
+.env
+qwen_server/server_config.json

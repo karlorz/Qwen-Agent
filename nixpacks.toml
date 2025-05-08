@@ -1,0 +1,31 @@
+# nixpacks.toml
+# Minimal configuration for Python + Node.js application using uv
+
+# Use the auto-detection for providers but explicitly name them for clarity
+providers = ["python", "node"]
+
+# Environment variables
+[variables]
+NODE_VERSION = "20"
+PYTHON_VERSION = "3.13"
+
+# Setup phase
+[phases.setup]
+# Install necessary system packages including Python and development tools
+aptPkgs = ["python3", "python3-pip", "python3-dev", "build-essential", "curl"]
+
+# Install Python dependencies
+[phases.install.python]
+cmds = [
+  "uv venv --seed",
+  "uv pip install -e ./"\[gui,rag,code\_interpreter,python\_executor,mcp]"",
+  "uv pip install openpyxl"
+]
+
+# Install Node.js dependencies and build frontend in one phase
+[phases.build]
+cmds = []
+
+# Start command - use uv to run the application
+[start]
+cmd = "uv run run_server.py -m $LLM_BASE_URL -k $LLM_API_KEY -l $LLM_MODEL"
