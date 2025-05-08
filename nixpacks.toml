@@ -18,7 +18,7 @@ aptPkgs = ["python3", "python3-pip", "python3-dev", "build-essential", "curl"]
 [phases.install.python]
 cmds = [
   "uv venv --seed",
-  "uv pip install -e ./"[gui,rag,code_interpreter,python_executor,mcp]"",
+  "uv pip install -e ./'[gui,rag,code_interpreter,python_executor,mcp]'",
   "uv pip install openpyxl"
 ]
 
