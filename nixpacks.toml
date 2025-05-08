@@ -2,7 +2,7 @@
 # Minimal configuration for Python + Node.js application using uv
 
 # Use the auto-detection for providers but explicitly name them for clarity
-providers = ["python", "node"]
+providers = ["...", "python"]
 
 # Environment variables
 [variables]
@@ -11,20 +11,15 @@ PYTHON_VERSION = "3.13"
 
 # Setup phase
 [phases.setup]
-# Install necessary system packages including Python and development tools
-aptPkgs = ["python3", "python3-pip", "python3-dev", "build-essential", "curl"]
+nixPkgs = ["...", "uv", "wget", "curl"]
+nixLibs = ["...",]
+aptPkgs = ["...",]
 
-# Install Python dependencies
-[phases.install.python]
 cmds = [
   "uv venv --seed",
   "uv pip install -e ./'[gui,rag,code_interpreter,python_executor,mcp]'",
   "uv pip install openpyxl"
 ]
-
-# Install Node.js dependencies and build frontend in one phase
-[phases.build]
-cmds = []
 
 # Start command - use uv to run the application
 [start]
